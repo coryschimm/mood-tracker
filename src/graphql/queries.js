@@ -1,26 +1,26 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const getMoodEntry = `query GetMoodEntry($id: ID!) {
-  getMoodEntry(id: $id) {
+export const getMoodItem = `query GetMoodItem($id: ID!) {
+  getMoodItem(id: $id) {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;
-export const listMoodEntrys = `query ListMoodEntrys(
-  $filter: ModelMoodEntryFilterInput
+export const listMoodItems = `query ListMoodItems(
+  $filter: ModelMoodItemFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMoodEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listMoodItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      mood
       date
-      notes
+      note
+      mood
     }
     nextToken
   }

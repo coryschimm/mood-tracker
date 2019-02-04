@@ -1,30 +1,30 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreateMoodEntry = `subscription OnCreateMoodEntry {
-  onCreateMoodEntry {
+export const onCreateMoodItem = `subscription OnCreateMoodItem {
+  onCreateMoodItem {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;
-export const onUpdateMoodEntry = `subscription OnUpdateMoodEntry {
-  onUpdateMoodEntry {
+export const onUpdateMoodItem = `subscription OnUpdateMoodItem {
+  onUpdateMoodItem {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;
-export const onDeleteMoodEntry = `subscription OnDeleteMoodEntry {
-  onDeleteMoodEntry {
+export const onDeleteMoodItem = `subscription OnDeleteMoodItem {
+  onDeleteMoodItem {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;

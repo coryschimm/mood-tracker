@@ -1,30 +1,30 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const createMoodEntry = `mutation CreateMoodEntry($input: CreateMoodEntryInput!) {
-  createMoodEntry(input: $input) {
+export const createMoodItem = `mutation CreateMoodItem($input: CreateMoodItemInput!) {
+  createMoodItem(input: $input) {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;
-export const updateMoodEntry = `mutation UpdateMoodEntry($input: UpdateMoodEntryInput!) {
-  updateMoodEntry(input: $input) {
+export const updateMoodItem = `mutation UpdateMoodItem($input: UpdateMoodItemInput!) {
+  updateMoodItem(input: $input) {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;
-export const deleteMoodEntry = `mutation DeleteMoodEntry($input: DeleteMoodEntryInput!) {
-  deleteMoodEntry(input: $input) {
+export const deleteMoodItem = `mutation DeleteMoodItem($input: DeleteMoodItemInput!) {
+  deleteMoodItem(input: $input) {
     id
-    mood
     date
-    notes
+    note
+    mood
   }
 }
 `;

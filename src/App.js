@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Amplify, { Auth } from "aws-amplify";
+import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
 import awsmobile from "./aws-exports";
 import { withAuthenticator } from "aws-amplify-react";
+import * as queries from "./graphql/queries";
 Amplify.configure(awsmobile);
-
+let json;
 class App extends Component {
+  async componentDidMount() {
+    const allTodos = await API.graphql(graphqlOperation(queries.listMoodItems));
+    console.log(allTodos);
+
+    json = await Auth.currentAuthenticatedUser();
+    console.log("user", json.attributes);
+  }
+
   render() {
     return (
       <div className="App">
@@ -29,4 +38,11 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App);
+export default withAuthenticator(App, {
+  signUpConfig: {
+    hiddenDefaults: ["phone_number"],
+    signUpFields: [
+      { label: "Name", key: "name", required: true, type: "string" }
+    ]
+  }
+});

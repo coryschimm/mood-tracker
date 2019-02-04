@@ -1,0 +1,16 @@
+projects:
+  moodtracker:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        graphQLApiId: 576altkxr5e45loorxkdihrjoq
+      endpoints:
+        prod: >-
+          https://ixkmg22mvnf7bheinyxprqkms4.appsync-api.us-east-1.amazonaws.com/graphql

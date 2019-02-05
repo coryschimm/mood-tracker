@@ -22,12 +22,6 @@ today = mm + "/" + dd + "/" + yyyy;
 
 Amplify.configure(awsmobile);
 let json;
-
-const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -55,40 +49,34 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <FormContainer>
-            <div>Enter Today's Mood: </div>
-            <span>Mood Type</span>
-            <input
-              onChange={e => {
-                this.handleChange(e.target.value, "NewMoodTitle");
-              }}
-              value={this.state.NewMoodTitle}
-            />
-            <span>Notes:</span>
-            <input
-              onChange={e => {
-                this.handleChange(e.target.value, "NewMoodType");
-              }}
-              value={this.state.NewMoodType}
-            />
-            <button
-              onClick={async () => {
-                var moodDetails = {
-                  date: today,
-                  note: this.state.NewMoodTitle,
-                  mood: this.state.NewMoodType
-                };
-                const newMood = await API.graphql(
-                  graphqlOperation(mutations.createMoodItem, {
-                    input: moodDetails
-                  })
-                );
-                console.log("BPM ", newMood);
-              }}
-            >
-              add
-            </button>
-          </FormContainer>
+          <div>add: </div>
+          <input
+            onChange={e => {
+              this.handleChange(e.target.value, "NewMoodTitle");
+            }}
+            value={this.state.NewMoodTitle}
+          />
+          <input
+            onChange={e => {
+              this.handleChange(e.target.value, "NewMoodType");
+            }}
+            value={this.state.NewMoodType}
+          />
+          <button
+            onClick={async () => {
+              var moodDetails = {
+                date: today,
+                note: this.state.NewMoodTitle,
+                mood: this.state.NewMoodType
+              };
+              const newMood = await API.graphql(
+                graphqlOperation(mutations.createMoodItem, {
+                  input: moodDetails
+                })
+              );
+              console.log("BPM ", newMood);
+            }}
+          />
         </header>
       </div>
     );

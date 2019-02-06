@@ -5,6 +5,7 @@ import { withAuthenticator } from "aws-amplify-react";
 import * as queries from "./graphql/queries";
 import * as mutations from "./graphql/mutations";
 import styled from "styled-components";
+
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1; //January is 0!
@@ -21,7 +22,6 @@ if (mm < 10) {
 today = mm + "/" + dd + "/" + yyyy;
 
 Amplify.configure(awsmobile);
-let json;
 
 const FormContainer = styled.div`
   display: flex;
@@ -38,11 +38,11 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const allTodos = await API.graphql(graphqlOperation(queries.listMoodItems));
-    console.log("AT", allTodos);
+    const allMoods = await API.graphql(graphqlOperation(queries.listMoodItems));
+    console.log("moods", allMoods);
 
-    json = await Auth.currentAuthenticatedUser();
-    console.log("user", json.attributes);
+    let currentuser = await Auth.currentAuthenticatedUser();
+    console.log("user", currentuser.attributes);
   }
 
   handleChange(value, name) {

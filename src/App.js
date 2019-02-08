@@ -37,21 +37,22 @@ class App extends Component {
     //this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    const allMoods = await API.graphql(graphqlOperation(queries.listMoodItems));
-    console.log("moods", allMoods);
-
-    let currentuser = await Auth.currentAuthenticatedUser();
-    console.log("user", currentuser.attributes);
-  }
-
   handleChange(value, name) {
     this.setState(state => {
       return (state[name] = value);
     });
   }
 
+  async getUserValues() {
+    let allMoods = await API.graphql(graphqlOperation(queries.listMoodItems));
+    console.log("moods", allMoods);
+
+    let currentuser = await Auth.currentAuthenticatedUser();
+    console.log("user", currentuser.attributes);
+  }
+
   render() {
+    this.getUserValues();
     return (
       <div className="App">
         <header className="App-header">
@@ -78,19 +79,18 @@ class App extends Component {
                   note: this.state.NewMoodTitle,
                   mood: this.state.NewMoodType
                 };
-                const newMood = await API.graphql(
+                await API.graphql(
                   graphqlOperation(mutations.createMoodItem, {
                     input: moodDetails
                   })
                 );
-                console.log("BPM ", newMood);
               }}
             >
               add
             </button>
           </FormContainer>
         </header>
-      </div>
+      </div >
     );
   }
 }

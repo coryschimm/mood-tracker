@@ -21,22 +21,13 @@ if (mm < 10) {
 today = mm + "/" + dd + "/" + yyyy;
 
 Amplify.configure(awsmobile);
-let json;
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { NewMoodTitle: "", NewMoodType: "" };
 
     this.handleChange = this.handleChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async componentDidMount() {
-    const allTodos = await API.graphql(graphqlOperation(queries.listMoodItems));
-    console.log("AT", allTodos);
-
-    json = await Auth.currentAuthenticatedUser();
-    console.log("user", json.attributes);
   }
 
   handleChange(value, name) {
@@ -74,7 +65,7 @@ class App extends Component {
                   input: moodDetails
                 })
               );
-              console.log("BPM ", newMood);
+              console.log("newMood ", newMood);
             }}
           />
         </header>
@@ -83,11 +74,4 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, {
-  signUpConfig: {
-    hiddenDefaults: ["phone_number"],
-    signUpFields: [
-      { label: "Name", key: "name", required: true, type: "string" }
-    ]
-  }
-});
+export default withAuthenticator(App);

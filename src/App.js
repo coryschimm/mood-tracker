@@ -83,7 +83,6 @@ class App extends Component {
                     input: moodDetails
                   })
                 );
-                console.log("BPM ", newMood);
               }}
             >
               add

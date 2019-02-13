@@ -5,6 +5,7 @@ import { withAuthenticator } from "aws-amplify-react";
 import * as queries from "./graphql/queries";
 import * as mutations from "./graphql/mutations";
 import styled from "styled-components";
+
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1; //January is 0!
@@ -21,7 +22,6 @@ if (mm < 10) {
 today = mm + "/" + dd + "/" + yyyy;
 
 Amplify.configure(awsmobile);
-let json;
 
 const FormContainer = styled.div`
   display: flex;
@@ -37,21 +37,22 @@ class App extends Component {
     //this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    const allTodos = await API.graphql(graphqlOperation(queries.listMoodItems));
-    console.log("AT", allTodos);
-
-    json = await Auth.currentAuthenticatedUser();
-    console.log("user", json.attributes);
-  }
-
   handleChange(value, name) {
     this.setState(state => {
       return (state[name] = value);
     });
   }
 
+  async getUserValues() {
+    let allMoods = await API.graphql(graphqlOperation(queries.listMoodItems));
+    console.log("moods", allMoods);
+
+    let currentuser = await Auth.currentAuthenticatedUser();
+    console.log("user", currentuser.attributes);
+  }
+
   render() {
+    this.getUserValues();
     return (
       <div className="App">
         <header className="App-header">
@@ -78,7 +79,7 @@ class App extends Component {
                   note: this.state.NewMoodTitle,
                   mood: this.state.NewMoodType
                 };
-                const newMood = await API.graphql(
+                await API.graphql(
                   graphqlOperation(mutations.createMoodItem, {
                     input: moodDetails
                   })
@@ -89,7 +90,7 @@ class App extends Component {
             </button>
           </FormContainer>
         </header>
-      </div>
+      </div >
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as queries from "./graphql/queries";
 import * as mutations from "./graphql/mutations";
+import * as subscriptions from "./graphql/subscriptions";
 import styled from "styled-components";
 import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
 
@@ -38,6 +39,7 @@ function MoodForm() {
   }
 
   getUserValues();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -61,8 +63,8 @@ function MoodForm() {
             onClick={async () => {
               var moodDetails = {
                 date: today,
-                note: this.state.NewMoodTitle,
-                mood: this.state.NewMoodType
+                note: title,
+                mood: type
               };
               await API.graphql(
                 graphqlOperation(mutations.createMoodItem, {

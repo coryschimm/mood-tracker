@@ -5,10 +5,17 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 const federated = {
-  google_client_id: "code.apps.googleusercontent.com"
+  google_client_id: "<your Google Web Client ID>"
 };
 
-ReactDOM.render(<App federated={federated} />, document.getElementById("root"));
+const MyTheme = {
+  SignInButton: { "backound-color": "none" }
+};
+
+ReactDOM.render(
+  <App theme={MyTheme} federated={federated} />,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

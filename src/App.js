@@ -104,9 +104,15 @@ const federated = {
     "624989443207-n5gkjrpaoei6qom5tmo913asqlsafbo0.apps.googleusercontent.com "
 };
 
-console.log("withAuthenticator", withAuthenticator);
+const MyTheme = {
+  googleSignInButton: { backgroundColor: "red", borderColor: "red" },
+  button: { backgroundColor: "green", borderColor: "red" },
+  signInButtonIcon: { display: "none" }
+};
 
-export default withAuthenticator(App, {
+//console.log("withAuthenticator", withAuthenticator);
+
+export default withAuthenticator(App, false, [], null, MyTheme, {
   signUpConfig: {
     hiddenDefaults: ["phone_number"],
     signUpFields: [

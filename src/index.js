@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
 const federated = {
   google_client_id: "<your Google Web Client ID>"
 };
 
 const MyTheme = {
-  SignInButton: { "backound-color": "none" }
+  googleSignInButton: { backgroundColor: "red", borderColor: "red" },
+  button: { backgroundColor: "green", borderColor: "red" },
+  signInButtonIcon: { display: "none" }
 };
 
 ReactDOM.render(

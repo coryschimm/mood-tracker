@@ -10,6 +10,7 @@ import {
   SignIn,
   SignUp,
   VerifyContact,
+  Authenticator,
   withAuthenticator
 } from "aws-amplify-react";
 
@@ -99,24 +100,15 @@ class App extends Component {
   }
 }
 
-const federated = {
-  google_client_id:
-    "624989443207-n5gkjrpaoei6qom5tmo913asqlsafbo0.apps.googleusercontent.com "
-};
-
 const MyTheme = {
   googleSignInButton: { backgroundColor: "red", borderColor: "red" },
   button: { backgroundColor: "green", borderColor: "red" },
   signInButtonIcon: { display: "none" }
 };
 
-//console.log("withAuthenticator", withAuthenticator);
+console.log("withAuthenticator", withAuthenticator);
 
 export default withAuthenticator(App, false, [], null, MyTheme, {
-  signUpConfig: {
-    hiddenDefaults: ["phone_number"],
-    signUpFields: [
-      { label: "Name", key: "name", required: true, type: "string" }
-    ]
-  }
+  hiddenDefaults: ["phone_number"],
+  signUpFields: [{ label: "Name", key: "name", required: true, type: "string" }]
 });
